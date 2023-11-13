@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Sms.Notification.Application\Sms.Notification.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Twilio" Version="6.15.0" />
+    </ItemGroup>
+
 </Project>

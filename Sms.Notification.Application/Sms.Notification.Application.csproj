@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Sms.Notification.Domain\Sms.Notification.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
