@@ -1,14 +1,15 @@
 using Sms.Notification.Application.Common.Notifications.Brokers;
+using Sms.Notification.Application.Common.Notifications.Services;
 
 namespace Sms.Notification.Infrastructure.Common.Notifications.Services;
 
-public class SmsSenderService : ISmsSenderBroker
+public class SmsSenderService : ISmsSenderService
 {
     private readonly IEnumerable<ISmsSenderBroker> _smsSenderBrokers;
 
-    public SmsSenderService(IEnumerable<ISmsSenderBroker> smsSenderBrokers)
+    public SmsSenderService(IEnumerable<ISmsSenderBroker> smsSendersBrokers)
     {
-        _smsSenderBrokers = smsSenderBrokers;
+        _smsSenderBrokers = smsSendersBrokers;
     }
 
     public async ValueTask<bool> SendAsync(
@@ -20,11 +21,11 @@ public class SmsSenderService : ISmsSenderBroker
     {
         var result = false;
 
-        foreach (var smsSenderBroker in _smsSenderBrokers)
+        foreach (var smsSenderService in _smsSenderBrokers)
         {
             try
             {
-                result = await smsSenderBroker.SendAsync(senderPhoneNumber,
+                result = await smsSenderService.SendAsync(senderPhoneNumber,
                                 receiverPhoneNumber,
                                 message,
                                 cancellationToken);
