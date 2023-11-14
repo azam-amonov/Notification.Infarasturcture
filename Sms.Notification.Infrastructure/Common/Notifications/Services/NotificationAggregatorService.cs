@@ -39,7 +39,7 @@ public class NotificationAggregatorService : INotificationAggregatorService
                                             notificationRequest.TemplateType,
                                             notificationRequest.Variables,
                                             cancellationToken),
-                            _ => throw new NotImplementedException()
+                            _ => throw new NotImplementedException("Error from SendAsync in Infrastructure service")
             };
 
             var sendNotificationResult = await senderNotificationTask;
