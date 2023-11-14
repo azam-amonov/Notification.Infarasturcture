@@ -11,7 +11,7 @@ public static partial class HostConfiguration
     {
         builder.Services.AddScoped<ISmsSenderBroker, TwilioSmsSenderBroker>();
 
-        builder.Services.AddScoped<ISmsSenderBroker, SmsSenderService>();
+        builder.Services.AddScoped<ISmsSenderService, SmsSenderService>();
 
         builder.Services
             .AddScoped<ISmsOrchestrationService, SmsOrchestrationService>()
@@ -26,6 +26,21 @@ public static partial class HostConfiguration
         builder.Services.AddControllers();
         
         return builder;
+    }
+
+    private static WebApplicationBuilder AddDevTools(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddEndpointsApiExplorer();
+
+        return builder;
+    }
+    private static WebApplication UseDevTools(this WebApplication app)
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        
+        return app;
     }
 
     private static WebApplication UseExposers(this WebApplication app)
