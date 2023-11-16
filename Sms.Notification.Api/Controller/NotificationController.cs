@@ -5,7 +5,7 @@ using Sms.Notification.Application.Common.Notifications.Services;
 namespace Sms.Notification.Api.Controller;
 
 [ApiController]
-[Route("/api[controller]")]
+[Route("api/[controller]")]
 public class NotificationController : ControllerBase
 {
     private readonly INotificationAggregatorService _notificationAggregatorService;
